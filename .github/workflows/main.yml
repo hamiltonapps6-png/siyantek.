@@ -22,11 +22,14 @@ jobs:
         with:
           channel: 'stable'
 
+      - name: Create Android scaffolding if missing
+        run: flutter create --platforms=android --org com.siyantek .
+
       - name: Install dependencies
         run: flutter pub get
 
       - name: Build AAB
-        run: flutter build appbundle --release --no-codesign
+        run: flutter build appbundle --release
 
       - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
